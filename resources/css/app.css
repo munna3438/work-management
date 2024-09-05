@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .bg_primary {
+        background-color: var(--primary-color);
+    }
+    .bg_primary_light {
+        background-color: var(--primary-light-color);
+    }
+    .text_primary {
+        color: var(--primary-color);
+    }
+    .bg_secondary {
+        background-color: var(--secondary-color);
+    }
+    .bg_secondary_light {
+        background-color: var(--secondary-light-color);
+    }
+    .text_secondary {
+        color: var(--secondary-color);
+    }
+    .border_primary {
+        border-color: var(--primary-color);
+    }
+    .border_secondary {
+        border-color: var(--secondary-color);
+    }
+    .bg_overlay {
+        background-color: var(--primary-bOverlay-color);
+    }
+    .admin_sidebar {
+        @apply h-full flex flex-col justify-between relative;
+    }
+    .sidebar_logo {
+        @apply h-[65px] w-full  p-3 flex justify-center items-center z-10 sticky top-0 left-0 bg_primary border-b;
+    }
+    .sidebar_link {
+        @apply w-full block p-3 hover:bg_overlay border-b  text-white transition duration-300;
+    }
+    .sidebar_link.active {
+        @apply bg_overlay;
+    }
+    .dropdown_inner {
+        @apply bg_overlay w-[96%] ml-auto;
+    }
+    .sidebar_setings {
+        @apply border-t;
+    }
+    .d_container {
+        /* @apply w-[97%] md:w-[93%] 2xl:w-[90%] mx-auto; */
+        @apply p-5;
+    }
+    .d_label {
+        @apply block mb-2 text-[#333];
+    }
+    .d_input_field {
+        @apply focus:outline-none focus:ring-0 border-gray-400 focus:border_primary  w-full rounded-md;
+    }
+    .d_button {
+        @apply bg_primary text-white px-4 py-2 rounded-md active:scale-90 hover:bg_primary_light;
+    }
+    .d_container_box {
+        @apply bg-white rounded-md p-8;
+    }
+    .d_action_button {
+        @apply rounded-md text-white h-[40px] w-[40px] flex justify-center items-center;
+    }
+    .d_action_container {
+        @apply flex gap-2 justify-center;
+    }
+    .d_success_message {
+        @apply bg-green-400 w-full py-3 px-4 rounded-md text-white mb-5 flex justify-between;
+    }
+    .m_btn2{
+        @apply bg_primary text-white py-1 px-3 hover:bg_primary_light rounded-lg
+    }
+}

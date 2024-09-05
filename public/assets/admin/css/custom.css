@@ -1,0 +1,65 @@
+:root {
+    --primary-color: #f7444e;
+    --primary-light-color: #fa5b63;
+    --primary-bOverlay-color: #ffffff24;
+    --secondary-color: #002c3e;
+    --secondary-light-color: #004d6c;
+}
+.bg_primary {
+    background-color: var(--primary-color);
+}
+.text_primary {
+    color: var(--primary-color);
+}
+.bg_secondary {
+    background-color: var(--secondary-color);
+}
+.text_secondary {
+    background-color: var(--secondary-color);
+}
+.tst_shadow {
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 -2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.m_shadow {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* dropdown */
+
+.dropdown_inner {
+    display: none;
+}
+.d_sec_title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    position: relative;
+    text-align: center;
+}
+.d_sec_title::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: calc(50% - 35px);
+    width: 70px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+table {
+    width: 100%;
+}
+th {
+    text-wrap: nowrap;
+}
+th,
+td {
+    border: 1px solid #002c3e;
+    text-align: center;
+    padding: 0.8rem;
+}
+.d_input_field:not(:placeholder-shown) {
+    border-color: var(--primary-color);
+}
