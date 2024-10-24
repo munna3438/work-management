@@ -26,52 +26,61 @@
                     <div class="">
                         <label for="instituteName" class="d_label">Institute Name <span
                                 class="text-red-500">*</span></label>
-                        <input type="text" name="instituteName" id="instituteName" class="d_input_field"
-                            placeholder="Enter institute Name" value="{{$sync->instituteName}}">
+                        {{-- <input type="text" name="instituteName" id="instituteName" class="d_input_field"
+                            placeholder="Enter institute Name" value="{{$sync->instituteName}}"> --}}
+                            <select name="instituteName" id="searchSelectField" class="d_input_field instituteName">
+                                @foreach ($institutes as $institute )
+
+                                <option value="{{$institute->instituteName}}" @if (old('instituteName',$sync->instituteName)  == $institute->instituteName)
+                                    selected
+
+                                @endif >{{$institute->instituteName}}</option>
+                                @endforeach
+                            </select>
                     </div>
                     <div class="">
                         <label for="instituteNumber" class="d_label">Institute Contact Number <span
                                 class="text-red-500">*</span></label>
                         <input type="text" name="instituteNumber" id="instituteNumber" class="d_input_field"
-                            placeholder="Enter Institute Number" value="{{$sync->instituteNumber}}">
+                            placeholder="Enter Institute Number" value="{{old('instituteNumber',$sync->instituteNumber)}}">
                     </div>
                     <div class="">
                         <label for="details" class="d_label">Work Details <span
                                 class="text-red-500">*</span></label>
                         <input type="text" name="details" id="details" class="d_input_field"
-                            placeholder="Enter Work Details" value="{{$sync->details}}">
+                            placeholder="Enter Work Details" value="{{old('details',$sync->details)}}">
                     </div>
 
                     <div class="">
                         <label for="workStatus" class="d_label">Work Status<span
                                 class="text-red-500">*</span></label>
                             <select name="workStatus" id="workStatus" class="w-full">
-                                    <option value="done" @if ($sync->workStatus == 'done') selected @endif>Done</option>
-                                    <option value="in-progress" @if ($sync->workStatus == 'in-progress') selected @endif >in-progress</option>
-                                    <option value="panding" @if ($sync->workStatus == 'panding') selected @endif>Panding</option>
+                                    <option value="done" @if (old('workStatus',$sync->workStatus) == 'done') selected @endif>Done</option>
+                                    <option value="in-progress" @if (old('workStatus',$sync->workStatus) == 'in-progress') selected @endif >in-progress</option>
+                                    <option value="panding" @if (old('workStatus',$sync->workStatus) == 'panding') selected @endif>Panding</option>
                             </select>
                     </div>
                     <div class="">
                         <label for="providerName" class="d_label">Provider Name <span
                                 class="text-red-500">*</span></label>
                         <input type="text" name="providerName" id="providerName" class="d_input_field"
-                            placeholder="Enter Provider Name" value="{{$sync->providerName}}">
+                            placeholder="Enter Provider Name" value="{{old('providerName',$sync->providerName)}}">
                     </div>
                     <div class="">
                         <label for="bill" class="d_label">Bill<span
                                 class="text-red-500">*</span></label>
 
                         <select name="bill" id="bill" class="w-full">
-                            <option value="unpaid" @if ($sync->bill == 'unpaid') selected @endif >Unpaid</option>
-                            <option value="deu" @if ($sync->bill == 'deu') selected @endif >Deu</option>
-                            <option value="paid" @if ($sync->bill == 'paid') selected @endif >Paid</option>
+                            <option value="unpaid" @if (old('bill',$sync->bill) == 'unpaid') selected @endif >Unpaid</option>
+                            <option value="deu" @if (old('bill',$sync->bill)== 'deu') selected @endif >Deu</option>
+                            <option value="paid" @if (old('bill',$sync->bill)== 'paid') selected @endif >Paid</option>
                         </select>
                     </div>
                     <div class="">
                         <label for="date" class="d_label">Date <span
                                 class="text-red-500">*</span></label>
                         <input type="date" name="date" id="date" class="d_input_field"
-                            placeholder="Enter Work Date" value="{{ $sync->created_at->format('Y-m-d') }}">
+                            placeholder="Enter Work Date" value="{{old('date',$sync->created_at->format('Y-m-d')) }}">
                     </div>
 
                 </div>

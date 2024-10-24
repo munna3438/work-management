@@ -15,7 +15,7 @@
     background-color: var(--secondary-color);
 }
 .text_secondary {
-    background-color: var(--secondary-color);
+    color: var(--secondary-color);
 }
 .tst_shadow {
     box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -53,11 +53,11 @@ table {
 }
 th {
     text-wrap: nowrap;
+    text-align: center;
 }
 th,
 td {
     border: 1px solid #002c3e;
-    text-align: center;
     padding: 0.8rem;
 }
 .d_input_field:not(:placeholder-shown) {

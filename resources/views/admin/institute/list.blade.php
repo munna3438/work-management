@@ -1,18 +1,13 @@
 @extends('layouts.admin.index')
 
 @section('style')
-<style>
-    tr td{
-        text-wrap: nowrap;
-    }
-</style>
 @endsection
 
 @section('content')
 <div class="d_container">
 
     <div class="d_container_box">
-        <h1 class="d_sec_title">SYNC List</h1>
+        <h1 class="d_sec_title">Institute List</h1>
 
         @if (Session::has('msg'))
             <div class="d_success_message">
@@ -31,44 +26,34 @@
             </div>
 
             <div class="text-right ">
-                <a class="m_btn2" href="{{route('sync.add')}}">add sync</a>
+                <a class="m_btn2" href="{{route('sync.add')}}">add institute</a>
             </div>
         </div>
-        <div class="w-full overflow-x-auto">
-            <table class="">
+        <div>
+            <table>
                 <thead>
                     <tr>
                         <th>Sr No.</th>
                         <th>Institute Name</th>
-                        <th>Institute phone Number</th>
-                        <th>work details</th>
-                        <th>work Status</th>
-                        <th>provider Name</th>
-                        <th>bill</th>
                         <th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($syncs as $key=>$sync)
+                    @foreach ($institutes as $key=>$institute)
                         <tr>
-                            {{-- <td>{{ $loop->iteration }}</td> --}}
-                            <td>{{ ($syncs->currentPage() - 1) * $syncs->perPage() + $loop->iteration }}</td>
-                            <td>{{ $sync->instituteName }}</td>
-                            <td>{{ $sync->instituteNumber }}</td>
-                            <td >{{ $sync->details }}</td>
-                            <td >{{ $sync->workStatus }}</td>
-                            <td>{{ $sync->providerName }}</td>
-                            <td>{{ $sync->bill }}</td>
-                            <td>{{ $sync->created_at->format('d M, Y') }}</td>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $institute->instituteName }}</td>
+                            <td>{{ $institute->created_at->format('d M, Y') }}</td>
                             <td >
                                 <div class="d_action_container">
-                                    <a href="{{ route('sync.edit', $sync->id) }}"
+
+                                    <a href="{{ route('institute.edit', $institute->id) }}"
                                         class="d_action_button  bg_secondary hover:bg_secondary_light">
 
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
-                                    <a href="{{ route('sync.delete', $sync->id) }}" onclick="return confirm('Are you sure delete catagory?')" class="d_action_button bg_primary hover:bg_primary_light" onclick="confirm('are you sure delete this sync ??')">
+                                    <a href="{{route('institute.delete',$institute->id)}}" onclick="return confirm('Are you sure delete institute?')" class="d_action_button bg_primary hover:bg_primary_light">
 
                                         <i class="fa-regular fa-trash-can"></i>
                                     </a>
@@ -79,7 +64,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $syncs->links() }}
     </div>
 </div>
 

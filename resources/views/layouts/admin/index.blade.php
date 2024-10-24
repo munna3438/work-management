@@ -13,6 +13,12 @@
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
 
         <link rel="stylesheet" href="{{ asset('assets/admin/css/custom.css') }}">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
+            integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+            />
         @livewireStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -30,19 +36,19 @@
                         </a>
                         <div class="sidebar_link_contanier">
                             <div class="accordion">
-                                <div class="sidebar_link  dropdown_head">SYNC</div>
-                                <div class="dropdown_inner mb-1">
-                                    <a href="{{route('sync.add')}}" class="sidebar_link">Add Sync</a>
-                                    <a href="{{route('sync.list')}}" class="sidebar_link">List Sync</a>
+                                <div class="sidebar_link  dropdown_head ">Institute</div>
+                                <div class="dropdown_inner ">
+                                    <a href="{{ route('institute.add') }}" class="sidebar_link">New Institute</a>
+                                    <a href="{{ route('institute.list') }}" class="sidebar_link">Institute List</a>
                                 </div>
                             </div>
                         </div>
                         <div class="sidebar_link_contanier">
                             <div class="accordion">
-                                <div class="sidebar_link  dropdown_head ">Product</div>
-                                <div class="dropdown_inner ">
-                                    {{-- <a href="{{ route('add.product') }}" class="sidebar_link">New Prodduct</a>
-                                    <a href="{{ route('list.product') }}" class="sidebar_link">Prodduct List</a> --}}
+                                <div class="sidebar_link  dropdown_head">SYNC</div>
+                                <div class="dropdown_inner mb-1">
+                                    <a href="{{route('sync.add')}}" class="sidebar_link">Add Sync</a>
+                                    <a href="{{route('sync.list')}}" class="sidebar_link">List Sync</a>
                                 </div>
                             </div>
                         </div>
@@ -73,6 +79,17 @@
         <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script> --}}
         <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>
         <script src="{{ asset('assets/admin/js/index.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+        integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        ></script>
+        <script>
+            $("#searchSelectField").selectize(
+                {
+                }
+            );
+        </script>
         @yield('script')
         @livewireScripts
     </body>

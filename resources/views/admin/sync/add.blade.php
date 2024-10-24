@@ -1,6 +1,7 @@
 @extends('layouts.admin.index')
 
 @section('style')
+
 @endsection
 
 @section('content')
@@ -26,29 +27,40 @@
                     <div class="">
                         <label for="instituteName" class="d_label">Institute Name <span
                                 class="text-red-500">*</span></label>
-                        <input type="text" name="instituteName" id="instituteName" class="d_input_field"
-                            placeholder="Enter institute Name">
+
+                            <select name="instituteName" id="searchSelectField" class="d_input_field instituteName">
+                                @foreach ($institutes as $institute )
+
+                                <option value="{{$institute->instituteName}}" @if (old('instituteName') == $institute->instituteName)
+                                    selected
+
+                                @endif >{{$institute->instituteName}}</option>
+                                @endforeach
+                            </select>
                     </div>
                     <div class="">
                         <label for="instituteNumber" class="d_label">Institute Contact Number <span
                                 class="text-red-500">*</span></label>
                         <input type="text" name="instituteNumber" id="instituteNumber" class="d_input_field"
-                            placeholder="Enter Institute Number">
+                            placeholder="Enter Institute Number" value="{{old('instituteNumber')}}">
                     </div>
                     <div class="">
                         <label for="details" class="d_label">Work Details <span
                                 class="text-red-500">*</span></label>
                         <input type="text" name="details" id="details" class="d_input_field"
-                            placeholder="Enter Work Details">
+                            placeholder="Enter Work Details" value="{{old('details')}}">
                     </div>
                     <div class="">
                         <label for="workStatus" class="d_label">Work Status<span
                                 class="text-red-500">*</span></label>
                             <select name="workStatus" id="workStatus" class="w-full">
-                                    <option value="done">Done</option>
+                                    <option value="done" @if (old('workStatus')=='done') selected @endif>Done</option>
                                     <option value="in-progress">in-progress</option>
                                     <option value="panding">Panding</option>
                             </select>
+                    </div>
+                    <div id="occasion" class="hidden">
+
                     </div>
                     <div class="">
                         <label for="providerName" class="d_label">Provider Name <span
@@ -78,4 +90,26 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function () {
+        $('#workStatus').change(function () {
+            let workStatus = $(this).val();
+            if(workStatus != 'done'){
+                $('#occasion').removeClass('hidden');
+                $('#occasion').html(`
+                    <div class="">
+                        <label for="occasion" class="d_label">Occasion </label>
+                        <input type="text" name="occasion" id="occasion" class="d_input_field"
+                            placeholder="Enter Occasion" value="{{old('occasion')}}">
+                    </div>
+                `);
+            }
+            else{
+                $('#occasion').addClass('hidden');
+                $('#occasion').html('');
+            }
+        });
+    });
+</script>
+
 @endsection
