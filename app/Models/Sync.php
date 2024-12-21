@@ -13,6 +13,7 @@ class Sync extends Model
         'instituteNumber',
         'details',
         'workStatus',
+        'occasion',
         'providerName',
         'bill',
         'created_at'

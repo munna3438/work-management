@@ -11,8 +11,9 @@ class SyncController extends Controller
 {
     public function index()
     {
-        $institutes = Institute::all();
-        return view('admin.sync.add',compact('institutes'));
+        $institutes = Institute::orderBy('id', 'desc')->get('instituteName');
+
+        return view('admin.sync.add', compact('institutes'));
     }
     public function store(Request $request)
     {
@@ -29,6 +30,7 @@ class SyncController extends Controller
             "instituteNumber" => $request->instituteNumber,
             "details" => $request->details,
             "workStatus" => $request->workStatus,
+            "occasion" => $request->occasion,
             "providerName" => $request->providerName,
             "bill" => $request->bill,
         ]);
@@ -46,12 +48,12 @@ class SyncController extends Controller
 
 
         if ($search != '') {
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('instituteName', 'LIKE', "%$search%")
-                  ->orWhere('instituteNumber', 'LIKE', "%$search%")
-                  ->orWhere('details', '=', $search)
-                  ->orWhere('workStatus', 'LIKE', "%$search%")
-                  ->orWhere('providerName', 'LIKE', "%$search%");
+                    ->orWhere('instituteNumber', 'LIKE', "%$search%")
+                    ->orWhere('details', '=', $search)
+                    ->orWhere('workStatus', 'LIKE', "%$search%")
+                    ->orWhere('providerName', 'LIKE', "%$search%");
             });
         }
         $syncs = $query->orderBy('id', 'desc')->paginate(10);
@@ -61,7 +63,7 @@ class SyncController extends Controller
     {
         $institutes = Institute::all();
         $sync = Sync::find($id);
-        return view('admin.sync.edit', compact('sync','institutes'));
+        return view('admin.sync.edit', compact('sync', 'institutes'));
     }
     public function update(Request $request, $id)
     {
@@ -79,6 +81,7 @@ class SyncController extends Controller
             "instituteNumber" => $request->instituteNumber,
             "details" => $request->details,
             "workStatus" => $request->workStatus,
+            "occasion" => $request->occasion,
             "providerName" => $request->providerName,
             "bill" => $request->bill,
             "created_at" => $request->date

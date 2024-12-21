@@ -55,8 +55,8 @@
                                 class="text-red-500">*</span></label>
                             <select name="workStatus" id="workStatus" class="w-full">
                                     <option value="done" @if (old('workStatus')=='done') selected @endif>Done</option>
-                                    <option value="in-progress">in-progress</option>
-                                    <option value="panding">Panding</option>
+                                    <option value="in-progress"  @if (old('workStatus')=='in-progress') selected @endif>in-progress</option>
+                                    <option value="panding"  @if (old('panding')=='in-progress') selected @endif>Panding</option>
                             </select>
                     </div>
                     <div id="occasion" class="hidden">
@@ -72,9 +72,9 @@
                         <label for="bill" class="d_label">Bill<span
                                 class="text-red-500">*</span></label>
                         <select name="bill" id="bill" class="w-full">
-                            <option value="unpaid">Unpaid</option>
-                            <option value="deu">Deu</option>
-                            <option value="Paid">Paid</option>
+                            <option value="unpaid" @if (old('panding')=='unpaid') selected @endif>Unpaid</option>
+                            <option value="deu" @if (old('panding')=='deu') selected @endif>Deu</option>
+                            <option value="Paid" @if (old('panding')=='Paid') selected @endif>Paid</option>
                         </select>
                     </div>
 
@@ -100,7 +100,7 @@
                     <div class="">
                         <label for="occasion" class="d_label">Occasion </label>
                         <input type="text" name="occasion" id="occasion" class="d_input_field"
-                            placeholder="Enter Occasion" value="{{old('occasion')}}">
+                            placeholder="Enter Occasion" required value="{{old('occasion')}}">
                     </div>
                 `);
             }

@@ -26,25 +26,28 @@
             </div>
 
             <div class="text-right ">
-                <a class="m_btn2" href="{{route('sync.add')}}">add institute</a>
+                <a class="m_btn2" href="{{route('institute.add')}}">add institute</a>
             </div>
         </div>
-        <div>
+        <div class="w-full overflow-x-auto">
             <table>
                 <thead>
                     <tr>
                         <th>Sr No.</th>
                         <th>Institute Name</th>
-                        <th>Date</th>
+                        <th>Current Limit</th>
+                        <th >Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($institutes as $key=>$institute)
                         <tr>
-                            <td>{{ $key+1 }}</td>
+                            {{-- <td>{{ $key+1 }}</td> --}}
+                            <td>{{ ($institutes->currentPage() - 1) * $institutes->perPage() + $loop->iteration }}</td>
                             <td>{{ $institute->instituteName }}</td>
-                            <td>{{ $institute->created_at->format('d M, Y') }}</td>
+                            <td>{{ $institute->totalLimit }}</td>
+                            <td class="text-nowrap">{{ \Carbon\Carbon::parse($institute->created_at)->format('d M, Y') }}</td>
                             <td >
                                 <div class="d_action_container">
 
@@ -52,6 +55,10 @@
                                         class="d_action_button  bg_secondary hover:bg_secondary_light">
 
                                         <i class="fa-regular fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="{{route('limit.list',$institute->id)}}" class="d_action_button bg-green-500 hover:bg-green-400">
+
+                                        <i class="fa-solid fa-bars"></i>
                                     </a>
                                     <a href="{{route('institute.delete',$institute->id)}}" onclick="return confirm('Are you sure delete institute?')" class="d_action_button bg_primary hover:bg_primary_light">
 
@@ -64,6 +71,7 @@
                 </tbody>
             </table>
         </div>
+        {{ $institutes->links() }}
     </div>
 </div>
 

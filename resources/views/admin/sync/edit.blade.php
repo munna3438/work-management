@@ -60,6 +60,9 @@
                                     <option value="panding" @if (old('workStatus',$sync->workStatus) == 'panding') selected @endif>Panding</option>
                             </select>
                     </div>
+                    <div id="occasion" class="hidden">
+
+                    </div>
                     <div class="">
                         <label for="providerName" class="d_label">Provider Name <span
                                 class="text-red-500">*</span></label>
@@ -95,4 +98,41 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function () {
+        let workStatus = $('#workStatus').val();
+        if(workStatus != 'done'){
+            $('#occasion').removeClass('hidden');
+            $('#occasion').html(`
+                <div class="">
+                    <label for="occasion" class="d_label">Occasion </label>
+                    <input type="text" name="occasion" id="occasion" class="d_input_field"
+                        placeholder="Enter Occasion" required value="{{old('occasion',$sync->occasion)}}">
+                </div>
+            `);
+        }
+        else{
+            $('#occasion').addClass('hidden');
+            $('#occasion').html('');
+        }
+        $('#workStatus').change(function () {
+            let workStatus = $(this).val();
+            if(workStatus != 'done'){
+                $('#occasion').removeClass('hidden');
+                $('#occasion').html(`
+                    <div class="">
+                        <label for="occasion" class="d_label">Occasion </label>
+                        <input type="text" name="occasion" id="occasion" class="d_input_field"
+                            placeholder="Enter Occasion" required value="{{old('occasion',$sync->occasion)}}">
+                    </div>
+                `);
+            }
+            else{
+                $('#occasion').addClass('hidden');
+                $('#occasion').html('');
+            }
+        });
+    });
+</script>
+
 @endsection
